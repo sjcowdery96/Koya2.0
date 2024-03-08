@@ -1,0 +1,18 @@
+Notes for Next Update:
+- Need to finish sendBranchState in Space Object
+- Game Model needs to hold all data
+    - piece supply for both players Piece[]
+    - gameBoard
+
+
+
+## In Progress
+Space Object 
+    - updateBranches
+
+
+## Finished
+added 
+Space.checkKoya()
+Piece Object
+Branch Object
