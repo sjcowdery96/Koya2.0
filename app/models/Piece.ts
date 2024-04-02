@@ -1,11 +1,13 @@
 class Piece {
-    //immutable data
-    readonly isP1: boolean
-    readonly isP2: boolean
+    //immutable data...?
+    isP1: boolean
+    isP2: boolean
     //isRoot and isSeed can be changed to make roots and trunks
     isSeed: boolean // (false means desert or trunk)
     isRoot: boolean // (false means seed)
-    isBurst: boolean // (true means dead trunk)
+    isBurst: boolean // (true means dead trunk or koya or desert)
+    //easy to print
+    data: string;
 
     constructor(pieceType: string) {
         //build a switch statement
@@ -17,6 +19,7 @@ class Piece {
                 this.isSeed = true;
                 this.isRoot = false;
                 this.isBurst = false;
+                break
             case 'P2':
                 this.isP1 = false
                 this.isP2 = true
@@ -24,6 +27,7 @@ class Piece {
                 this.isSeed = true;
                 this.isRoot = false;
                 this.isBurst = false;
+                break
             case 'KOYA':
                 this.isP1 = true
                 this.isP2 = true
@@ -31,25 +35,39 @@ class Piece {
                 this.isSeed = true;
                 this.isRoot = true;
                 this.isBurst = true;
+                break;
             default: //desert
                 this.isP1 = false
                 this.isP2 = false
                 this.isSeed = false;
                 this.isRoot = false;
                 this.isBurst = true;
-        }
 
+        }
+        this.data = this.display()
     }
 
-    root(): void {
+    root(debugIndex: number): void {
         if (!this.isSeed || this.isRoot) {
+            //not a seed or already a root
             //do nothing
+            console.log("SKIPPED ROOTS: " + debugIndex + " -- " + this.data)
         }
-        else this.isRoot = true;
+        else {
+            //update display to root
+            this.isRoot = true;
+            this.data = this.display()
+            console.log("SET ROOTS: " + this.data + ' ' + debugIndex)
+        }
     }
     //Displays a string for this piece
     display(): string {
-        if (!this.isSeed) {
+        if (this.isP1 && this.isP2) {
+            //Koya!
+            return "KK"
+        }
+        else if (!this.isSeed) {
+            //not a seed
             if (this.isP1) {
                 //is P1 Trunk (need to calc score at space level)
                 return "1"
@@ -73,10 +91,6 @@ class Piece {
                 //P2 Seed Piece
                 return "20"
             }
-        }
-        else if (this.isP1 && this.isP2) {
-            //Koya!
-            return "KK"
         }
         else if (!this.isP1) {
             //is a P2 root

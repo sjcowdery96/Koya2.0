@@ -3,10 +3,10 @@
 class Branch {
     player1: boolean //true for P1 and koya, false for empty, XX, P2, and TRUNKS
     player2: boolean //true for P2 and koya, false for empty, XX, P1, and TRUNKS
-    //initialize as input values
-    constructor(p1: boolean, p2: boolean) {
-        this.player1 = p1;
-        this.player2 = p2;
+    //initialize as both false to begin with
+    constructor() {
+        this.player1 = false;
+        this.player2 = false;
     }
     //checks if Player1
     checkPlayer1(): boolean {
@@ -20,6 +20,21 @@ class Branch {
     makeTrunk() {
         this.player1 = false;
         this.player2 = false;
+    }
+    //this method sets this branch to both true  (i.e. KOYA)
+    makeKoya() {
+        this.player1 = true;
+        this.player2 = true;
+    }
+    //this method sets this branch to Player1
+    setPlayer1() {
+        this.player1 = true;
+        this.player2 = false;
+    }
+    //this method sets this branch to Player2
+    setPlayer2() {
+        this.player1 = false;
+        this.player2 = true;
     }
     //print type useful for debugging
     printType(): string {
