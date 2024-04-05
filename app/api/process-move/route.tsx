@@ -1,7 +1,7 @@
 //holds our route handlers
 import { NextRequest, NextResponse } from "next/server";
-import Gameboard from "@/app/models/Gameboard";
-//create game
+import Gameboard from "@/app/classes/Gameboard";
+//create gameBoard (eventually this will happen in begin-game route)
 const newGame = new Gameboard
 //get function just fetches the gameboard data
 export async function GET() {

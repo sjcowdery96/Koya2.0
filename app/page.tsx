@@ -1,8 +1,5 @@
-import Image from "next/image";
-import DisplaySpace from "./components/DisplaySpace";
-import Gameboard from "./models/Gameboard";
-import DisplayBoard from "./components/DisplayBoard";
-import UserMoveInput from "./components/UserMoveInput";
+//imports
+import Gameboard from "./classes/Gameboard";
 import ClientDisplay from "./components/ClientDisplay";
 
 export default function Home() {

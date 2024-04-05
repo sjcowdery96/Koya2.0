@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState, useContext } from 'react'
 import DisplaySpace from './DisplaySpace'
-import Space from '../models/Space';
+import Space from '../classes/Space';
 import { clientContext } from '../contexts/ClientMoveContext';
 //props to know what type is incoming
 interface Props {
