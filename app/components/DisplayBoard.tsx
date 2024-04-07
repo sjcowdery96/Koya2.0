@@ -20,7 +20,7 @@ const DisplayBoard = () => {
         const response = await fetch('http://localhost:3000/api/process-move');
         const gameData = await response.json()
         setBoardData(gameData)
-        console.log(gameData.gameData)
+        //console.log(gameData.gameData)
     }
 
     //runs twice

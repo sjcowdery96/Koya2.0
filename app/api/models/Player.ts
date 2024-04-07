@@ -17,8 +17,8 @@ const playerSchema = new Schema({
 
 
 // model and export
-const Player = mongoose.model('Player', playerSchema)
-module.exports = Player
+export default mongoose.models.Player || mongoose.model('Player', playerSchema);
+
 /*
  - Player 
         - _ID

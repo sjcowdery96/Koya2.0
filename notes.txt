@@ -1,31 +1,31 @@
-Notes for Next Update:
+## uChicago Requirements:
+- DONE Link Database via MongoDB
+- DONE Add player Login via BCrypt
+- Deploy
 
-HUGE ERROR --> when a koya is created, all following seeds are ROOTS...
+## Notes for Next Update:
+
+--Need to authenticate users and re-direct to gamepage
+    maybe add OAuth and next-auth for google sign-in? 
+
+--Linking Database GameResults/Player properly using $lookup:
+gemini: how do you use $lookup in mongodb/mongoose in typscript?
+could allow you to build functions to manipulate the database to
+return winning record, calculate player rating, etc.
+
+
+HUGE GAMEPLAY ERROR --> when a koya is created, all following seeds are ROOTS...
 UPDATE: have narrowed this error down to being in the actuall P1/P2SeedStack kept by the
 gameBoard. The seed at index 0 in the SeedStacks is being set to a root before placement
 
-uChicago Requirements:
-- Link Database via MongoDB
-   - Player 
-        - _ID
-        - Name
-        - Password
-        - Rating (fun to calculate)
-        - Record (win/loss/tie)
-        - Games_Played (linked)
-    - Game
-        - _ID
-        - GameBoard
-            - Moves 
-        - Players (linked)
-- Add player Login via BCrypt
-- Deploy on Vercel
 
 ## In Progress
 - After a koya is created, all the following seeds for that player are PLACED as roots.
-
+- Database created but not tested
 
 ## Finished!
+encrypted passwords into database with bcrypt
+connected MongoDB for Player
 fixed trunks increasing size every turn
 solved doubling up pieces and playerMove errors
 createKoya object and initial create koya logic

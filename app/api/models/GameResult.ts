@@ -1,4 +1,4 @@
-//mongoDB model for Game
+//mongoDB model for GameResult
 // require mongoose 
 import mongoose from "mongoose"
 // creating shorthand for the Schema constructor 
@@ -6,6 +6,7 @@ const { Schema } = mongoose
 
 // GameResults schema 
 const gameResultSchema = new Schema({
+    //scores
     Player1Score: { type: Number },
     Player2Score: { type: Number },
     //reference the player schema
@@ -28,5 +29,10 @@ const gameResultSchema = new Schema({
 })
 
 // model and export
+export default mongoose.models.GameResult || mongoose.model('GameResult', gameResultSchema)
+
+/*
 const GameResult = mongoose.model('Game', gameResultSchema)
 module.exports = GameResult
+*/
+
