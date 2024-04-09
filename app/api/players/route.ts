@@ -25,8 +25,8 @@ interface PlayerModel {
 
 //Get Route to return all players
 export async function GET() {
-    //return all players limit 5 without passwords
-    const foundPlayers = await Player.find({}, { username: 1, wins: 1, rating: 1, global_rank: 1, losses: 1, ties: 1, }).limit(5)
+    //return players with select display data -- limit 10
+    const foundPlayers = await Player.find({}, { username: 1, wins: 1, rating: 1, global_rank: 1, losses: 1, ties: 1, }).limit(10)
     return NextResponse.json({ players: foundPlayers }, { status: 200 })
 }
 //Post Route to create player or check for login

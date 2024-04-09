@@ -8,9 +8,11 @@
 
 ## Notes for Next Update:
 
+-- Utilize PlayerContext and create game API routes to grab players to begin a game
+-- Add 'resign' button and logic to test GameResults logging
 -- Finish connecting GameResults to Players
 -- Deploy on Firebase (better than Vercel for gameState management)
---Need to more securely authenticate users and re-direct to gamepage
+-- Need to more securely authenticate users and re-direct to gamepage
     maybe add OAuth and next-auth for google sign-in? 
 
 
