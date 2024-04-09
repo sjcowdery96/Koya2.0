@@ -1,5 +1,4 @@
 //imports
-import ClientDisplay from "./components/ClientDisplay";
 import UserLogin from "./components/UserLogin";
 
 export default function Home() {

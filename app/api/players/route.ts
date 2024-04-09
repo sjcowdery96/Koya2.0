@@ -1,4 +1,5 @@
 //handles creating new player or password/username checking for existing players
+//handles returning all known players in the DB
 //linked to local MongoDB database via mongoose
 
 //holds our route handlers
@@ -15,18 +16,23 @@ mongoose.connect(process.env.MONGO_URL || '').then(() => {
 interface PlayerModel {
     username: string,
     password: string,
-    record: {
-        wins: number,
-        losses: number,
-        ties: number
-    },
-    rating: number
+    wins: number,
+    losses: number,
+    ties: number
+    rating?: number,
+    global_rank?: number
+}
+
+//Get Route to return all players
+export async function GET() {
+    //return all players limit 5 without passwords
+    const foundPlayers = await Player.find({}, { username: 1, wins: 1, rating: 1, global_rank: 1, losses: 1, ties: 1, }).limit(5)
+    return NextResponse.json({ players: foundPlayers }, { status: 200 })
 }
 //Post Route to create player or check for login
 export async function POST(request: NextRequest) {
     //read the body of the request into json
     const requestBody = await request.json()
-    //console.log(requestBody)
     //check for proper inputs
     if (!requestBody.username || !requestBody.password) {
         //bad request
@@ -47,7 +53,6 @@ export async function POST(request: NextRequest) {
                 //password mathces -- login success
                 console.log("Login Success!")
                 //need to add next steps for directing to game page
-
                 return NextResponse.json({
                     loginSuccess: true
                 }, { status: 200 })
@@ -65,16 +70,12 @@ export async function POST(request: NextRequest) {
         else {
             //hash new password 
             const hashedPW = await bcrypt.hash(requestBody.password, 10)
-            //attempts to create new player
-            const newPlayer: PlayerModel = {
+            //attempts to create a default new player
+            const newPlayer = {
                 username: requestBody.username,
                 password: hashedPW,
-                record: {
-                    wins: 0,
-                    losses: 0,
-                    ties: 0
-                },
-                rating: 0.5
+                //create initial rank based on total Player count
+                global_rank: (await Player.countDocuments({})) + 1
             }
             //creates the new Player document
             const newDocument = new Player(newPlayer);

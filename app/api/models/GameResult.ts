@@ -6,6 +6,8 @@ const { Schema } = mongoose
 
 // GameResults schema 
 const gameResultSchema = new Schema({
+    //is the game completed
+    Completed: { type: Boolean },
     //scores
     Player1Score: { type: Number },
     Player2Score: { type: Number },

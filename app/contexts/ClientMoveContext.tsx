@@ -59,8 +59,6 @@ export default function ClientDisplay({ children }: UserProvideProps) {
         <clientContext.Provider value={{ ClientMove, Refresher, setClientMove, setClientMoveType, setClientPlayer, setClientSpaceID, setRefresher }}>
             {children}
         </clientContext.Provider>
-
-
     )
 }
 

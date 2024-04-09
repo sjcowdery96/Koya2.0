@@ -25,7 +25,7 @@ const UserLogin: React.FC = () => {
         //const hashedPassword = await bcrypt.hash(formData.password, 10); // Hash password with 10 rounds
         //attept login
         //console.log('Login attempted:', { username: formData.username, password: formData.password });
-        const response = await fetch('http://localhost:3000/api/create-player', {
+        const response = await fetch('http://localhost:3000/api/players', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -36,7 +36,7 @@ const UserLogin: React.FC = () => {
             console.log('successful login')
             //this is a very insecure way to handle an authentication. 
             //need to update before full deployment
-            router.push('http://localhost:3000/game')
+            router.push('http://localhost:3000/create-game')
         }
         else {
             console.log('failed login')
