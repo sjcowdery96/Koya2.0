@@ -1,11 +1,18 @@
+//NEW LOGIN EXPERIENCE
+
 //imports
 import React from 'react'
-import UserLogin from '../components/UserLogin'
+import ClientLogin from '../components/ClientLogin'
 
 const Login = () => {
     return (
         <div>
-            <UserLogin />
+            <div>
+                <div>
+                    <ClientLogin />
+                </div>
+            </div>
+
         </div>
     )
 }

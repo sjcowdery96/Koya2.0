@@ -4,7 +4,7 @@
 
 //holds our route handlers
 import { NextRequest, NextResponse } from "next/server";
-import Player from '../models/Player'
+import Player from '../../models/Player'
 import mongoose from "mongoose";
 const bcrypt = require('bcryptjs')
 require('dotenv').config()
@@ -24,9 +24,9 @@ interface PlayerModel {
 }
 
 //Get Route to return all players
-export async function GET() {
-    //return players with select display data -- limit 10
-    const foundPlayers = await Player.find({}, { username: 1, wins: 1, rating: 1, global_rank: 1, losses: 1, ties: 1, }).limit(10)
+export async function GET(request: NextRequest) {
+    //this logic works for excluding calling a user with username: 'meh'
+    const foundPlayers = await Player.find({ username: { $ne: 'meh' } }, { username: 1, wins: 1, rating: 1, global_rank: 1, losses: 1, ties: 1, }).limit(10)
     return NextResponse.json({ players: foundPlayers }, { status: 200 })
 }
 //Post Route to create player or check for login
@@ -54,7 +54,8 @@ export async function POST(request: NextRequest) {
                 console.log("Login Success!")
                 //need to add next steps for directing to game page
                 return NextResponse.json({
-                    loginSuccess: true
+                    loginSuccess: true,
+                    returnedPlayer: existing
                 }, { status: 200 })
             }
             //existing username -- password missmatch, failed login
@@ -84,7 +85,8 @@ export async function POST(request: NextRequest) {
             //returns the document
             console.log(`new player created! \n` + newDocument)
             return NextResponse.json({
-                loginSuccess: true
+                loginSuccess: true,
+                returnedPlayer: newPlayer
             }, { status: 200 })
         }
     }

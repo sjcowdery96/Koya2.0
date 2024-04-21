@@ -2,11 +2,14 @@
 - Minimum 25 commits
 - DONE Link Database via MongoDB
 - DONE Add player Login via BCrypt
-
 - MongoDB collection connection (GameResults --> Players)
 - Deploy!
 
 ## Notes for Next Update:
+FIXED THE FRIGGIN CONTEXT ERROR!! WOHOO!
+
+Next challenge -- fixing the create game routes to create and start game
+
 
 -- Utilize PlayerContext and create game API routes to grab players to begin a game
 -- Add 'resign' button and logic to test GameResults logging
@@ -32,6 +35,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+HUGE WIN -- fixed context for logged in player
 encrypted passwords into database with bcrypt
 connected MongoDB for Player
 fixed trunks increasing size every turn

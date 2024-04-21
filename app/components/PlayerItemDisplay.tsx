@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { playerContext } from '../contexts/AddPlayerContext';
 
 interface Player {
     _id: string,
@@ -13,19 +14,36 @@ interface Props {
     player: Player
 }
 
+interface FormPlayer {
+    selectedValue: string;
+}
+
 const PlayerItemDisplay = ({ player }: Props) => {
+    //const [formPlayerUsername, setFormPlayer] = useState<FormPlayer>({ selectedValue: '' });
+    //using Context
+    const { SelectedPlayer, SelectedOpponent, setSelectedOpponent } = useContext(playerContext)
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        //set local state and global context
+        //setFormPlayer({ ...formPlayerUsername, selectedValue: event.target.value });
+        setSelectedOpponent({ username: player.username, _id: player._id, rating: player.rating, wins: player.wins, losses: player.losses, ties: player.ties, global_rank: player.global_rank })
+        console.log("player: " + SelectedPlayer.username)
+        console.log("opponent: " + SelectedOpponent.username)
+
+    };
+
     return (
         < tr >
             <th>
                 <label>
-                    <input type="checkbox" className="checkbox" />
+                    <input onChange={handleChange} type="radio" className="radio radio-primary" value={player.username} checked={SelectedOpponent.username === player.username} />
                 </label>
             </th>
             <td>
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcWYPmrkFbuZtUaULMonVtKBkygj7WXWU-_H3qgjWT-FlpQxPj9pLqcbbxETTFSVrpVGc&usqp=CAU" alt="Avatar Tailwind CSS Component" />
+                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Avatar Tailwind CSS Component" />
                         </div>
                     </div>
                     <div>

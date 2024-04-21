@@ -9,7 +9,7 @@ interface Move {
 export interface MoveContextInterface {
     ClientMove: Move,
     Refresher: number,
-    setClientMove: Dispatch<SetStateAction<Move>>
+    setClientMove: Dispatch<SetStateAction<Move>>,
     setClientMoveType: Dispatch<SetStateAction<string>>,
     setClientPlayer: Dispatch<SetStateAction<number>>,
     setClientSpaceID: Dispatch<SetStateAction<number>>,
@@ -36,7 +36,7 @@ const defaultState = {
     }
 
 } as MoveContextInterface
-
+//creates the whole referenceable context for holding all functions and variables
 export const clientContext = createContext(defaultState);
 
 type UserProvideProps = {

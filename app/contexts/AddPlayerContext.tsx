@@ -3,80 +3,89 @@ import React, { ReactNode, useState, createContext, Dispatch, SetStateAction } f
 interface Player {
     _id: string,
     username: string,
-    password: string,
-    record: {
-        wins: number,
-        losses: number,
-        ties: number
-    },
-    rating: number
+    wins: number,
+    losses: number,
+    ties: number,
+    rating: number,
+    global_rank: number
 }
 
-export interface MoveContextInterface {
+export interface PlayerContextInterface {
     SelectedPlayer: Player,
     SelectedOpponent: Player,
     Refresher: number,
-    setSelectedPlayer: Dispatch<SetStateAction<Player>>
-    setSelectedOpponent: Dispatch<SetStateAction<Player>>
+    setSelectedPlayer: Dispatch<SetStateAction<Player>>,
+    setSelectedOpponent: Dispatch<SetStateAction<Player>>,
+    setSelectedOpponentUsername: Dispatch<SetStateAction<string>>,
+    setSelectedPlayerUsername: Dispatch<SetStateAction<string>>,
     setRefresher: Dispatch<SetStateAction<number>>
 
 }
 //empty default state
 const defaultState = {
     SelectedPlayer: {
-        _id: 'anything',
-        username: 'string',
-        password: 'string',
-        record: {
-            wins: 0,
-            losses: 0,
-            ties: 0
-        },
-        rating: 0
+        _id: 'DEFAULT-P',
+        username: 'default-player',
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        rating: 0,
+        global_rank: -1,
+    },
+    SelectedOpponent: {
+        _id: 'DEFAULT-O',
+        username: 'default-opponent',
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        rating: 0,
+        global_rank: -1,
     },
     Refresher: 0,
     setSelectedPlayer: (selectedPlayer: Player) => {
     },
     setSelectedOpponent: (selectedOpponent: Player) => {
     },
+    setSelectedOpponentUsername: (selctedOpponentUsername: string) => {
+    },
+    setSelectedPlayerUsername: (selctedPlayerUsername: string) => {
+    },
     setRefresher: (refresh: number) => {
     }
 
-} as MoveContextInterface
-
+} as PlayerContextInterface
+//creates the whole referenceable context for holding all functions and variables
 export const playerContext = createContext(defaultState);
 
 type UserProvideProps = {
     children: ReactNode
 }
 
-export default function ClientDisplay({ children }: UserProvideProps) {
+export default function SetPlayer({ children }: UserProvideProps) {
     const [Refresher, setRefresher] = useState<number>(0)
+    const [SelectedOpponentUsername, setSelectedOpponentUsername] = useState<string>('')
+    const [SelectedPlayerUsername, setSelectedPlayerUsername] = useState<string>('')
     const [SelectedPlayer, setSelectedPlayer] = useState<Player>({
         _id: '',
         username: '',
-        password: '',
-        record: {
-            wins: 0,
-            losses: 0,
-            ties: 0
-        },
-        rating: -1
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        rating: -1,
+        global_rank: -1
     })
     const [SelectedOpponent, setSelectedOpponent] = useState<Player>({
         _id: '',
         username: '',
-        password: '',
-        record: {
-            wins: 0,
-            losses: 0,
-            ties: 0
-        },
-        rating: -1
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        rating: -1,
+        global_rank: -1
     })
 
     return (
-        <playerContext.Provider value={{ SelectedOpponent, setSelectedOpponent, SelectedPlayer, Refresher, setSelectedPlayer, setRefresher }}>
+        <playerContext.Provider value={{ SelectedOpponent, setSelectedPlayerUsername, setSelectedOpponentUsername, setSelectedOpponent, SelectedPlayer, Refresher, setSelectedPlayer, setRefresher }}>
             {children}
         </playerContext.Provider>
     )
