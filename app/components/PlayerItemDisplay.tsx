@@ -19,13 +19,13 @@ interface FormPlayer {
 }
 
 const PlayerItemDisplay = ({ player }: Props) => {
-    //const [formPlayerUsername, setFormPlayer] = useState<FormPlayer>({ selectedValue: '' });
+    //const [formPlayerUsername, setFormPlayer] = useState<Player>(player);
     //using Context
     const { SelectedPlayer, SelectedOpponent, setSelectedOpponent } = useContext(playerContext)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         //set local state and global context
-        //setFormPlayer({ ...formPlayerUsername, selectedValue: event.target.value });
+        //setFormPlayer({ ...formPlayerUsername, Player: event.target.value });
         setSelectedOpponent({ username: player.username, _id: player._id, rating: player.rating, wins: player.wins, losses: player.losses, ties: player.ties, global_rank: player.global_rank })
         console.log("player: " + SelectedPlayer.username)
         console.log("opponent: " + SelectedOpponent.username)

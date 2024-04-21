@@ -23,10 +23,8 @@ interface Props {
 }
 
 const CreateGame = ({ loggedInPlayer }: Props) => {
-    console.log('loggedin player: ' + loggedInPlayer.username)
     // our list of players from the database
     const [players, setPlayers] = useState<Player[]>([]);
-    const [newGame, setNewGame] = useState<Game>()
     //using Context
     const { SelectedOpponent, SelectedPlayer, setSelectedPlayer, setSelectedOpponent, setRefresher, Refresher } = useContext(playerContext)
 
@@ -55,20 +53,13 @@ const CreateGame = ({ loggedInPlayer }: Props) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         //prevents silly things
         event.preventDefault();
+        //reads out players from context
         console.log("GAME SET: " + SelectedOpponent.username + " vs " + SelectedPlayer.username)
-        //matches the inputs to the correct format for the move API
-        setNewGame({
-            Player1: SelectedPlayer,
-            Player2: SelectedOpponent
-        })
-        //only updates relevant data feilds
-        event.preventDefault();
-        console.log(newGame)
-        //send move to the API (MOVE TO ClientDisplay component?)
+        //send game to API
         const response = await fetch('http://localhost:3000/api/create-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newGame),
+            body: JSON.stringify({ Player1: SelectedPlayer, Player2: SelectedOpponent }),
         });
         if (!response.ok) {
             //bad response
@@ -79,20 +70,14 @@ const CreateGame = ({ loggedInPlayer }: Props) => {
         }
 
     };
-    const handleChange = async (event: React.FormEvent<HTMLFormElement>) => {
-        setNewGame({
-            Player1: SelectedPlayer,
-            Player2: SelectedOpponent
-        })
-
-    }
 
     return (
         <div>
 
             <div className='p-10'>
-                <h1 className='text-2xl font-bold'>Select Opponent</h1>
-                <form onSubmit={handleSubmit} onChange={handleChange}>
+                <h1 className='text-3xl font-bold'>{SelectedPlayer.username}</h1>
+                <h1 className='text-xl font-bold'> Selected Opponent: {SelectedOpponent.username}</h1>
+                <form onSubmit={handleSubmit}>
                     <DisplayPlayerList data={players} />
                     <button type="submit" className="btn btn-active btn-primary">Submit</button>
                 </form>
