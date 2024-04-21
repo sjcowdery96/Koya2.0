@@ -1,6 +1,7 @@
 //import statments for models
 import { NextRequest, NextResponse } from "next/server";
 import GameResult from '../../models/GameResult'
+import GameData from "@/app/models/GameData";
 import mongoose from "mongoose";
 require('dotenv').config()
 //Connect Mongoose 
@@ -39,13 +40,26 @@ export async function POST(request: NextRequest) {
         }, { status: 500 })
     }
     else {
-        //create game in the database
-        console.log("players!")
-        console.log(requestBody)
+        //creates gamedata with the player names
+        const newGameData = new GameData({
+            Players: [requestBody.Player1.username, requestBody.Player2.username,]
+        })
+        //save GameData
+        await newGameData.save();
+        //create gameresults in the database
+        const newGameResult = new GameResult({
+            GameData: newGameData,
+            Player1: requestBody.Player1,
+            Player2: requestBody.Player2,
+        })
+        //saves that gameresult
+        await newGameResult.save();
+        //return gameData to redirect client
         return NextResponse.json({
-            gameCreated: true
+            gameCreated: true,
+            gameData: newGameData._id
         }, { status: 200 })
-        //return gameID to redirect client
+
     }
 }
 

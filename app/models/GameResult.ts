@@ -6,11 +6,17 @@ const { Schema } = mongoose
 
 // GameResults schema 
 const gameResultSchema = new Schema({
+    //holds the gamedata document
+    GameData: {
+        type: Schema.Types.ObjectId,
+        ref: 'GameData',
+        required: true
+    },
     //is the game completed
-    Completed: { type: Boolean },
+    Completed: { type: Boolean, default: false },
     //scores
-    Player1Score: { type: Number },
-    Player2Score: { type: Number },
+    Player1Score: { type: Number, default: 0 },
+    Player2Score: { type: Number, default: 0 },
     //reference the player schema
     Player1: {
         type: Schema.Types.ObjectId,
@@ -33,8 +39,4 @@ const gameResultSchema = new Schema({
 // model and export
 export default mongoose.models.GameResult || mongoose.model('GameResult', gameResultSchema)
 
-/*
-const GameResult = mongoose.model('Game', gameResultSchema)
-module.exports = GameResult
-*/
 

@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import DisplayPlayerList from './DisplayPlayerList'
 import { playerContext } from '../contexts/AddPlayerContext';
+import { useRouter } from 'next/navigation';
 
 //player model
 interface Player {
@@ -23,6 +24,7 @@ interface Props {
 }
 
 const CreateGame = ({ loggedInPlayer }: Props) => {
+    const router = useRouter()
     // our list of players from the database
     const [players, setPlayers] = useState<Player[]>([]);
     //using Context
@@ -65,8 +67,11 @@ const CreateGame = ({ loggedInPlayer }: Props) => {
             //bad response
         }
         else {
+            const responseBody = await response.json()
             // Handle successful response --> hit the refresher
             setRefresher((Math.random() * 50000))
+            console.log(`/game/${responseBody.gameData._id}`)
+            router.push(`http://localhost:3000/game/${responseBody.gameData._id}`)
         }
 
     };
