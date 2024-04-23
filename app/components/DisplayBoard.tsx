@@ -4,20 +4,23 @@ import DisplaySpace from './DisplaySpace'
 import Space from '../classes/Space';
 import { clientContext } from '../contexts/ClientMoveContext';
 //props to know what type is incoming
-interface Props {
+interface BoardDatas {
     gameData: {
         Spaces: Space[];
     }
 }
+interface Props {
+    gameID: string
+}
 //pass in spaces array from gameboard
-const DisplayBoard = () => {
+const DisplayBoard = ({ gameID }: Props) => {
     //use context refresher to trigger re-render of the board
     const { Refresher } = useContext(clientContext)
     //create a variable to hold the render state of the board
-    const [boardData, setBoardData] = useState<Props>()
+    const [boardData, setBoardData] = useState<BoardDatas>()
     //method for fetching boardData
     const fetchData = async () => {
-        const response = await fetch('http://localhost:3000/api/process-move');
+        const response = await fetch(`http://localhost:3000/api/process-move-v2/${gameID}`);
         const gameData = await response.json()
         setBoardData(gameData)
         //console.log(gameData.gameData)

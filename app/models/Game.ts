@@ -6,8 +6,31 @@ import Move from '../classes/Move';
 import Space from '../classes/Space';
 
 //define GameData
-interface GameData {
-    Initialized: Boolean, //runs our pseudo constructor
+interface Game {
+    //final scores
+    Player1FinalScore: { type: Number, default: 0 },
+    Player2FinalScore: { type: Number, default: 0 },
+    //reference the player schema
+    Player1: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: true
+    },
+    Player2: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: true
+    },
+    //might have a winnner, might be a tie!
+    Winner: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: false
+    },
+    //is the game over?
+    Completed: Boolean,
+    //our pseudo constructor
+    Initialized: Boolean,
     //all spaces
     Spaces: Space[]
     //player seed supply
@@ -32,7 +55,7 @@ interface GameData {
     Players: String[]; // Array of player userNames
 }
 
-const gameDataSchema = new Schema<GameData>({
+const gameDataSchema = new Schema<Game>({
     Initialized: { type: Boolean, default: false },
     //holds array of spaces
     Spaces: { type: [Object] },
@@ -53,8 +76,28 @@ const gameDataSchema = new Schema<GameData>({
     boardWidth: { type: Number, default: 9 },
     //location of trunks
     allTrunks: { type: [Number] },
-    //players involved
-    Players: { type: [String], required: true },
+    //is the game completed
+    Completed: { type: Boolean, default: false },
+    //scores
+    Player1FinalScore: { type: Number, default: 0 },
+    Player2FinalScore: { type: Number, default: 0 },
+    //reference the player schema
+    Player1: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: true
+    },
+    Player2: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: true
+    },
+    //might have a winnner, might be a tie!
+    Winner: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+        required: false
+    },
 });
 
 // Apply custom type transformation to ensure data matches Move interface
@@ -101,11 +144,11 @@ gameDataSchema.pre('save', async function (next) {
         this.Initialized = true;
     }
     //stores each incremented move
-    const game = this as GameData;
+    const game = this as Game;
     game.GameHistory = game.GameHistory.map((move) => ({ ...move } as Move));
     next();
 });
 
 
-export default mongoose.models.GameData || mongoose.model('GameData', gameDataSchema);
+export default mongoose.models.Game || mongoose.model('Game', gameDataSchema);
 

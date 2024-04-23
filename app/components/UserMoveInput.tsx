@@ -7,8 +7,11 @@ interface Move {
     Player: number; //options: 1 or 2
     TargetSpaceID: number; //options between 0 to (gameboard width)^2
 }
+interface Props {
+    gameID: string
+}
 
-const UserMoveInput = () => {
+const UserMoveInput = ({ gameID }: Props) => {
     //useState for string or null
     const [selectedValue, setSelectedValue] = useState<string>("seed");
     const [selectedPlayer, setSelectedPlayer] = useState<string>('');
@@ -38,7 +41,7 @@ const UserMoveInput = () => {
         setClientMove({ MoveType: newMove.MoveType, Player: newMove.Player, TargetSpaceID: ClientMove.TargetSpaceID })
         event.preventDefault();
         //send move to the API (MOVE TO ClientDisplay component?)
-        const response = await fetch('http://localhost:3000/api/process-move', {
+        const response = await fetch(`http://localhost:3000/api/process-move-v2/${gameID}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newMove),

@@ -13,7 +13,10 @@ interface GameDataDisplay {
     P2DesertSupply: number,
 
 }
-const ScoreBoard = () => {
+interface Props {
+    gameID: string
+}
+const ScoreBoard = ({ gameID }: Props) => {
     //initialize scoreboard
     const [myGameData, setMyGameData] = useState<GameDataDisplay>({
         P1Score: 0,
@@ -30,7 +33,7 @@ const ScoreBoard = () => {
     const { Refresher } = useContext(clientContext)
     //method for fetching boardData
     const fetchData = async () => {
-        const response = await fetch('http://localhost:3000/api/process-move');
+        const response = await fetch(`http://localhost:3000/api/process-move-v2/${gameID}`);
         //extract scoreboard data and seed stack data from the response
         const { gameData } = await response.json()
         //assign variables 

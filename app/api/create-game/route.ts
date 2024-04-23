@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import GameResult from '../../models/GameResult'
 import GameData from "@/app/models/GameData";
+import Game from "@/app/models/Game";
 import mongoose from "mongoose";
 require('dotenv').config()
 //Connect Mongoose 
@@ -40,24 +41,17 @@ export async function POST(request: NextRequest) {
         }, { status: 500 })
     }
     else {
-        //creates gamedata with the player names
-        const newGameData = new GameData({
-            Players: [requestBody.Player1.username, requestBody.Player2.username,]
-        })
-        //save GameData
-        await newGameData.save();
-        //create gameresults in the database
-        const newGameResult = new GameResult({
-            GameData: newGameData,
+        //NEW LOGIC
+        //creates Game with the player names 
+        const newGame = new Game({
             Player1: requestBody.Player1,
             Player2: requestBody.Player2,
         })
-        //saves that gameresult
-        await newGameResult.save();
+        await newGame.save();
         //return gameData to redirect client
         return NextResponse.json({
             gameCreated: true,
-            gameData: newGameData._id
+            gameID: newGame._id
         }, { status: 200 })
 
     }

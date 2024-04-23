@@ -6,23 +6,21 @@
 - Deploy!
 
 ## Notes for Next Update:
+need to move all the class functions into the server and append the database
+    EXAMPLE: TypeError: newGame.Spaces[location].addPiece is not a function
+    push() needs to become:
+    MyModel.findByIdAndUpdate(documentId, {
+        $push: { arrayOfElements: elementToAdd }, // Specify the array field and element
+    })
+
 Create game successfully linked to Database
-Next challenge is to pull gameData via _id parameter
-using axios to call the database
+Next challenge is making the GameBoard reading and writing to the database!
 
 
--- Utilize PlayerContext and create game API routes to grab players to begin a game
 -- Add 'resign' button and logic to test GameResults logging
--- Finish connecting GameResults to Players
 -- Deploy on Firebase (better than Vercel for gameState management)
 -- Need to more securely authenticate users and re-direct to gamepage
     maybe add OAuth and next-auth for google sign-in? 
-
-
---Linking Database GameResults/Player properly using $lookup:
-gemini: how do you use $lookup in mongodb/mongoose in typscript?
-could allow you to build functions to manipulate the database to
-return winning record, calculate player rating, etc.
 
 
 HUGE GAMEPLAY ERROR --> when a koya is created, all following seeds are ROOTS...
@@ -35,6 +33,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+connected game data -- consolidated GameResults/Gamedata into Game
 connected players, gameResults and GameData
 small update -- directly sent context into the API to create-game
 HUGE WIN -- fixed context for logged in player

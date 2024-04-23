@@ -70,8 +70,8 @@ const CreateGame = ({ loggedInPlayer }: Props) => {
             const responseBody = await response.json()
             // Handle successful response --> hit the refresher
             setRefresher((Math.random() * 50000))
-            console.log(`/game/${responseBody.gameData._id}`)
-            router.push(`http://localhost:3000/game/${responseBody.gameData._id}`)
+            //redirect to game ID 
+            router.push(`http://localhost:3000/game/${responseBody.gameID}`)
         }
 
     };
