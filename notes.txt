@@ -2,17 +2,23 @@
 - Minimum 25 commits
 - DONE Link Database via MongoDB
 - DONE Add player Login via BCrypt
-- MongoDB collection connection (GameResults --> Players)
+- DONE MongoDB collection connection (GameResults --> Players)
+- Socket / MultiPlayer option
 - Deploy!
 
 ## Notes for Next Update:
--- Data is writing to the database! Now add multiPlayer with Socket
-    -- create a new test project of Tic Tac Toe for online multi-player learning
+-- Basic setup for socket.io complete!
+-- decide which "server" will drive what actions (NextJS or Websocket)
+    -- probably nextJS for routing pages, and webSocket for creating games/rooms
+-- combine 2 players into a "room" with socket.io when you createGame
+    -- learn about "handshake" in socket...?
+    -- https://socket.io/docs/v4/rooms/
+
 -- Add checkMove logic 
-
-
 -- Add 'resign' button and logic to test GameResults logging
 -- Deploy on Firebase (better than Vercel for gameState management)
+#### Embelishments
+
 -- Need to more securely authenticate users and re-direct to gamepage
     maybe add OAuth and next-auth for google sign-in? 
 
@@ -27,6 +33,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+basic setup for socket.io completed
 HUGE WIN -- figured out how to save with myGame.markModified('Spaces')!!
 connected game data -- consolidated GameResults/Gamedata into Game
 connected players, gameResults and GameData

@@ -3,6 +3,7 @@
 //imports
 import React from 'react'
 import ClientLogin from '../components/playerLoginComponents/ClientLogin'
+import TestingSocket from '../components/playerLoginComponents/TestingSocket'
 
 const Login = () => {
     return (
@@ -12,7 +13,7 @@ const Login = () => {
                     <ClientLogin />
                 </div>
             </div>
-
+            <TestingSocket />
         </div>
     )
 }
