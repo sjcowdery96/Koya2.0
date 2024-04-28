@@ -6,16 +6,9 @@
 - Deploy!
 
 ## Notes for Next Update:
-need to move all the class functions into the server and append the database
-    EXAMPLE: TypeError: newGame.Spaces[location].addPiece is not a function
-    push() needs to become:
-    Game.findByIdAndUpdate(gameID, {
-        $push: { arrayOfElements: elementToAdd }, // Specify the array field and element
-    })
-    do a search for //NEEDS TO BE CHANGED FOR SERVER -- looks like a managable number of spots
-
-Create game successfully linked to Database
-Next challenge is making the GameBoard reading and writing to the database!
+-- Data is writing to the database! Now add multiPlayer with Socket
+    -- create a new test project of Tic Tac Toe for online multi-player learning
+-- Add checkMove logic 
 
 
 -- Add 'resign' button and logic to test GameResults logging
@@ -34,6 +27,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+HUGE WIN -- figured out how to save with myGame.markModified('Spaces')!!
 connected game data -- consolidated GameResults/Gamedata into Game
 connected players, gameResults and GameData
 small update -- directly sent context into the API to create-game
