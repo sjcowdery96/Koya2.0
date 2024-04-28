@@ -9,9 +9,10 @@
 need to move all the class functions into the server and append the database
     EXAMPLE: TypeError: newGame.Spaces[location].addPiece is not a function
     push() needs to become:
-    MyModel.findByIdAndUpdate(documentId, {
+    Game.findByIdAndUpdate(gameID, {
         $push: { arrayOfElements: elementToAdd }, // Specify the array field and element
     })
+    do a search for //NEEDS TO BE CHANGED FOR SERVER -- looks like a managable number of spots
 
 Create game successfully linked to Database
 Next challenge is making the GameBoard reading and writing to the database!

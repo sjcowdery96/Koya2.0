@@ -1,3 +1,4 @@
+//Primary Game
 //imports
 import mongoose from 'mongoose';
 import { Schema } from 'mongoose';

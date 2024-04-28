@@ -24,6 +24,7 @@ const ClientDisplay = ({ gameID }: Props) => {
     return (
         <div>
             <ClientMoveProvider>
+                <h3>{gameID}</h3>
                 <div>
                     <UserMoveInput gameID={gameID} />
                 </div>
