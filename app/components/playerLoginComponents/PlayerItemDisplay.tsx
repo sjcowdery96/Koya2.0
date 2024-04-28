@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { playerContext } from '../contexts/AddPlayerContext';
+import { playerContext } from '../../contexts/AddPlayerContext';
 
 interface Player {
     _id: string,

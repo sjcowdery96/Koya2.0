@@ -1,8 +1,8 @@
 'use client'
 //import Image from 'next/image'
 import React, { useContext } from 'react'
-import { clientContext } from '../contexts/ClientMoveContext'
-import Piece from '../classes/Piece'
+import { clientContext } from '../../contexts/ClientMoveContext'
+import Piece from '../../classes/Piece'
 
 //define an interface to render data to the space
 interface Props {

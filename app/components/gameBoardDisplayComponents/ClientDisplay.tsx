@@ -1,7 +1,7 @@
 'use client'
 import UserMoveInput from './UserMoveInput'
 import DisplayBoard from './DisplayBoard'
-import ClientMoveProvider from '../contexts/ClientMoveContext'
+import ClientMoveProvider from '../../contexts/ClientMoveContext'
 import ScoreBoard from './ScoreBoard'
 import React, { useState, useEffect } from 'react';
 

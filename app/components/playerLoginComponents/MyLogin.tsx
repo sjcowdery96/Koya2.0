@@ -1,7 +1,7 @@
 'use client'
 //building a context wrapper around all components
 import React, { useState, useEffect, useContext } from 'react'
-import { playerContext } from '../contexts/AddPlayerContext'
+import { playerContext } from '../../contexts/AddPlayerContext'
 import CreateGame from './CreateGame'
 
 interface LoginForm {

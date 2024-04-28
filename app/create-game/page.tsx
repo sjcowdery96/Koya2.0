@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateGame from '../components/CreateGame'
+import CreateGame from '../components/playerLoginComponents/CreateGame'
 
 interface Player {
     _id: string,

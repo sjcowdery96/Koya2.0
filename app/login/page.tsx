@@ -2,7 +2,7 @@
 
 //imports
 import React from 'react'
-import ClientLogin from '../components/ClientLogin'
+import ClientLogin from '../components/playerLoginComponents/ClientLogin'
 
 const Login = () => {
     return (

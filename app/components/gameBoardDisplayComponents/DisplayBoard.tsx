@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useState, useContext } from 'react'
 import DisplaySpace from './DisplaySpace'
-import Space from '../classes/Space';
-import { clientContext } from '../contexts/ClientMoveContext';
+import Space from '../../classes/Space';
+import { clientContext } from '../../contexts/ClientMoveContext';
 //props to know what type is incoming
 interface BoardDatas {
     gameData: {

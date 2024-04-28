@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { clientContext } from '../contexts/ClientMoveContext'
+import { clientContext } from '../../contexts/ClientMoveContext'
 
 interface GameDataDisplay {
     P1Score: number,

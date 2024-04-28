@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import { clientContext } from '../contexts/ClientMoveContext';
+import { clientContext } from '../../contexts/ClientMoveContext';
 
 interface Move {
     MoveType: string; //options: move pieces, place piece seed, place piece desert, place piece koya

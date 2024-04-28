@@ -1,5 +1,5 @@
 import { Gaegu } from "next/font/google";
-import ClientDisplay from "../../components/ClientDisplay";
+import ClientDisplay from "../../components/gameBoardDisplayComponents/ClientDisplay";
 
 //interface for the ID passing in through URL
 interface Props {

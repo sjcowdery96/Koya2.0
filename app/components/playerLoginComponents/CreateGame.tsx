@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState, useContext } from 'react'
 import DisplayPlayerList from './DisplayPlayerList'
-import { playerContext } from '../contexts/AddPlayerContext';
+import { playerContext } from '../../contexts/AddPlayerContext';
 import { useRouter } from 'next/navigation';
 
 //player model
