@@ -2,7 +2,7 @@
 - Minimum 25 commits
 - DONE Link Database via MongoDB
 - DONE Add player Login via BCrypt
-- DONE MongoDB collection connection (GameResults --> Players)
+- DONE MongoDB collection connection (Game --> Players)
 - Socket / MultiPlayer option
 - Deploy!
 
@@ -33,6 +33,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+added google sign-in with NextAuth
 basic setup for socket.io completed
 HUGE WIN -- figured out how to save with myGame.markModified('Spaces')!!
 connected game data -- consolidated GameResults/Gamedata into Game

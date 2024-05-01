@@ -7,6 +7,7 @@ const { Schema } = mongoose
 const playerSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
+    email: { type: String, required: false },
     wins: { type: Number, default: 0 },
     ties: { type: Number, default: 0 },
     losses: { type: Number, default: 0 },
@@ -24,7 +25,6 @@ const playerSchema = new Schema({
 })
 
 //checks we have our defaults present
-
 
 playerSchema.pre('save', function (next) {
     //need to add logic to pre-fill default data

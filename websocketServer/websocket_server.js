@@ -6,7 +6,7 @@ const { Server } = require("socket.io")
 const httpSever = createServer()
 const io = new Server(httpSever, {
     cors: {
-        origin: '*',
+        origin: ['*'],
         methods: ["GET", "POST"]
     }
 })
@@ -23,10 +23,8 @@ io.on("connection", async (socket) => {
         //increment sample data
         mySampleData++;
         console.log("SampleData: " + mySampleData)
-        //send data back to ALL clients except sender
-        //socket.broadcast.emit("someEvent", mySampleData)
-        //sends to all clients INCLUDING sender
-        io.emit("someEvent", mySampleData)
+        //socket.broadcast.emit("someEvent", mySampleData) //send data back to ALL clients except sender
+        io.emit("someEvent", mySampleData)//sends to all clients INCLUDING sender
     })
     socket.on('disconnect', () => {
         console.log("discconnected and removed all listeners for socket: " + socket.id)
