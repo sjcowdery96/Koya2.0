@@ -1,3 +1,6 @@
+//UNUSED COMPONENT --> replaced by Google Sign In
+//Might be useful for "leaderboard"
+
 import React from 'react'
 import PlayerItemDisplay from './PlayerItemDisplay'
 //player model

@@ -3,15 +3,12 @@
 - DONE Link Database via MongoDB
 - DONE Add player Login via BCrypt
 - DONE MongoDB collection connection (Game --> Players)
-- IN PROGRESS adding/syncing Google Authentication to player query/sign-on
-- Socket / MultiPlayer option
+- DONE adding/syncing Google Authentication to player query/sign-on
+- IN PROGRESS Socket / MultiPlayer functions
 - Deploy!
 
 ## Notes for Next Update:
--- check design on Whimsical to re-do create game flow
-    -- needs to leverage the Google Session in NewGoogleLogin to 
-        find and display user data
-continued on Socket.IO --> join games
+continue testing on Socket.IO --> join games
 -- decide which "server" will drive what actions (NextJS or Websocket)
     -- probably nextJS for routing pages, and webSocket for creating games/rooms
 -- combine 2 players into a "room" with socket.io when you createGame
@@ -34,6 +31,7 @@ gameBoard. The seed at index 0 in the SeedStacks is being set to a root before p
 
 
 ## Finished!
+basic UI for joining games by using DummyData to check design
 "solved" duplicate data entries in MongoDB by using a boolean...
 added google sign-in with NextAuth
 basic setup for socket.io completed

@@ -33,7 +33,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "websocketServer/websocket_server.js",
-    "app/components/playerLoginComponents/TestingSocket.tsx"
+    "app/components/playerLoginComponents/TestingSocket.tsx",
+    "app/middleware.js"
   ],
   "exclude": [
     "node_modules"

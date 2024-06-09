@@ -99,7 +99,7 @@ const gameDataSchema = new Schema<Game>({
         ref: 'Player',
         required: false
     },
-});
+}, { timestamps: true });
 
 // Apply custom type transformation to ensure data matches Move interface
 gameDataSchema.pre('save', async function (next) {

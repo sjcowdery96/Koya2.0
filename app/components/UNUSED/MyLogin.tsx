@@ -1,4 +1,5 @@
 'use client'
+//UNUSED COMPONENT --> replaced by Google Sign In
 //building a context wrapper around all components
 import React, { useState, useEffect, useContext } from 'react'
 import { playerContext } from '../../contexts/AddPlayerContext'

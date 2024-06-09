@@ -18,6 +18,10 @@ const TestingSocket = () => {
             console.log('recieved from server: ' + data)
             setButtonText(data)
         })
+        // unsubscribe from event for preventing memory leaks
+        return () => {
+            socket.off();
+        };
         //most tutorials call for a "cleanup" function here, but our server handles
         //closing and disconnecting all listeners
 

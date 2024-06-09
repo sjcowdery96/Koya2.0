@@ -5,13 +5,12 @@ import mongoose from "mongoose";
 const { Schema } = mongoose
 
 const playerSchema = new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true },
-    email: { type: String, required: false },
+    username: { type: String, required: true, },
+    email: { type: String, required: true, unique: true },
     wins: { type: Number, default: 0 },
     ties: { type: Number, default: 0 },
     losses: { type: Number, default: 0 },
-    rating: { type: Number, default: 0.5 },
+    rating: { type: Number, default: 1 },
     global_rank: { type: Number, default: -1, required: true },
     games_played: { type: Number, default: 0, required: true },
     points_scored: { type: Number, default: 0, required: true },
@@ -22,7 +21,7 @@ const playerSchema = new Schema({
     wins_as_p1: { type: Number, default: 0, required: true },
     wins_as_p2: { type: Number, default: 0, required: true },
     avg_center_nine_control: { type: Number, default: 0, required: true },
-})
+}, { timestamps: true });
 
 //checks we have our defaults present
 

@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState, useContext } from 'react'
-import DisplayPlayerList from './DisplayPlayerList'
+import DisplayPlayerList from '../leaderboardComponents/DisplayPlayerList'
 import { playerContext } from '../../contexts/AddPlayerContext';
 import { useRouter } from 'next/navigation';
 
@@ -41,7 +41,7 @@ const CreateGame = ({ loggedInPlayer }: Props) => {
                 //set default opponent
                 const dp: Player = data.players[0]
                 setSelectedOpponent({ _id: dp._id, username: dp.username, rating: dp.rating, wins: dp.wins, losses: dp.losses, ties: dp.ties, global_rank: dp.global_rank })
-                //need to "filter" the actual input player from their opponent list
+                //need to "filter" the actual input player out of their opponent list
                 const Opponents = data.players.filter((player: Player) => player.username !== loggedInPlayer.username)
                 setPlayers(Opponents as Player[]); // Type assertion for clarity
             } catch (error) {

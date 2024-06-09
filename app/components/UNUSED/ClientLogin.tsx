@@ -1,4 +1,5 @@
 'use client'
+//UNUSED COMPONENT --> replaced by Google Sign In
 import React from 'react'
 import AddPlayerContext from '../../contexts/AddPlayerContext'
 import MyLogin from './MyLogin'
